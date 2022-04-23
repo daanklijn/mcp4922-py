@@ -10,7 +10,7 @@ class MCP4922:
         self.spi = SoftSPI(baudrate=baudrate, polarity=1, phase=0, mosi=Pin(mosi_pin), sck=Pin(sck_pin), miso=Pin(29))
         self.cs = Pin(cs_pin, mode=Pin.OUT)
 
-    def write_value(self, value, output_dac=OUTPUT_B, buffer_mode=BUFFERED, gain_mode=GAIN_2X, output_mode=OUTPUT_ACTIVE):
+    def write_value(self, value, output_dac=OUTPUT_A, buffer_mode=BUFFERED, gain_mode=GAIN_1X, output_mode=OUTPUT_ACTIVE):
         configBits = output_dac << 3 | buffer_mode << 2 | gain_mode << 1 | output_mode
         first_four_bits = value & 0XF00
         last_eight_bits = value & 0xFF
